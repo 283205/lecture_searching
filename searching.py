@@ -45,10 +45,13 @@ def linear_search(sequence, number):
     return slovnik
 
 
+
+
 def main():
     sequential_data = read_data("sequential.json", "unordered_numbers")
     print(sequential_data)
-    print(linear_search([2, 3, 5 , 8 , 9, 5], 5))
+    print(linear_search(sequential_data, 5))
+
 
 
 if __name__ == "__main__":
