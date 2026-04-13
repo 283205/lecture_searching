@@ -21,12 +21,12 @@ def read_data(file_name, field):
     with open(file_name, "r") as file:
         data = json.load(file)
     keys = ["unordered_numbers", "ordered_numbers", "dna_sequence"]
-    for key in data:
-        if key != field:
-            return None
-        else:
-            hodnoty = data.get(field)
-            return hodnoty
+
+    if field not in keys:
+        return None
+    else:
+        hodnoty = data.get(field)
+        return hodnoty
 
     cwd_path = Path.cwd()
     
@@ -44,13 +44,38 @@ def linear_search(sequence, number):
     slovnik["count"] = count
     return slovnik
 
+def binary_search(numbers_list, cislo):
+    left = 0
+    right = len(numbers_list) - 1
+    if cislo not in numbers_list:
+        return None
 
+    while left <= right:
+        middle = (left + right) // 2
+        if numbers_list[middle] == cislo:
+            return middle
+        elif numbers_list[middle] < cislo:
+            left = middle + 1
+        else:
+            right = middle - 1
+    return None
+
+
+
+    #for i in range(len(numbers_list)):
+        #if numbers_list[i] == cislo:
+            #return i
+
+    return None
 
 
 def main():
     sequential_data = read_data("sequential.json", "unordered_numbers")
     print(sequential_data)
     print(linear_search(sequential_data, 5))
+    seznam = read_data("sequential.json", "ordered_numbers")
+    print(seznam)
+    print(binary_search(seznam, 21))
 
 
 
