@@ -32,10 +32,23 @@ def read_data(file_name, field):
     
     file_path = cwd_path / file_name
 
+def linear_search(sequence, number):
+    slovnik = {}
+    count = 0
+    pozice_seznam = []
+    for i in range(len(sequence)):
+        if sequence[i] == number:
+            pozice_seznam.append(i)
+            count += 1
+    slovnik["positions"] = pozice_seznam
+    slovnik["count"] = count
+    return slovnik
+
 
 def main():
     sequential_data = read_data("sequential.json", "unordered_numbers")
     print(sequential_data)
+    print(linear_search([2, 3, 5 , 8 , 9, 5], 5))
 
 
 if __name__ == "__main__":
