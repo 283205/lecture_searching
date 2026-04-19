@@ -2,6 +2,7 @@ from pathlib import Path
 import json
 
 
+
 def read_data(file_name, field):
     """
     Reads a JSON file and returns data for a given field.
@@ -68,6 +69,14 @@ def binary_search(numbers_list, cislo):
 
     return None
 
+def pattern_search(sequence, vzor):
+    mnozina = set()
+    delka_vzor = len(vzor)
+
+    for i in range(len(sequence)):
+        if sequence[i: i + delka_vzor] == vzor:
+            mnozina.add(i)
+    return mnozina
 
 def main():
     sequential_data = read_data("sequential.json", "unordered_numbers")
@@ -76,6 +85,8 @@ def main():
     seznam = read_data("sequential.json", "ordered_numbers")
     print(seznam)
     print(binary_search(seznam, 21))
+    sequence = read_data("sequential.json", "dna_sequence")
+    print(pattern_search(sequence, "ATA"))
 
 
 
